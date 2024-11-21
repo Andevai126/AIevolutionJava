@@ -1,0 +1,91 @@
+https://towardsdatascience.com/how-does-back-propagation-in-artificial-neural-networks-work-c7cad873ea7#:~:text=Back%2Dpropagation%20is%20just%20a,lower%20weights%20and%20vice%20versa.
+
+x0, x1, x2 = input nodes/units
+z0, z1, z2, z3 = hidden nodes/units
+D0 = output layer
+activation value is actual output of model = h(x) of whole model
+
+model consists out nodes that have an equal amount of weights as they have links. these weights still belong to the same node/unit
+W = weights of node
+
+f(a) = a = activation function
+
+h(x) = W0*X0 + W1*X1 + W2*X2 = hypothesis function i.e. get weighted sum of inputs
+determines what the input to/for the activation function is
+uses values of nodes on the left side
+
+learning rate = 0.1
+all weights will start at 1
+
+for next part, dont use input nodes, i.e. X0, X1, X2
+
+forward propagating ----------
+1 use h(x) to get weighted sum of input values, becomes "a"!!!! and is used in f(a) (and in f apostrophe (a))  "a" = result of h(x)
+2 use f(a) to get output of activation function as input feature for connected nodes in next layer and becomes "z" = result of f(a)
+
+loss = actual_y - predicted_y
+actual_y = true, comes from training set
+predicted_y = possibly true, comes from model
+
+
+backpropagation ------
+f'(a) = 1 //because derivative of f(a) is always 1 --check 52
+J'(W) = Z * delta --check 57
+Z is old z value obtained via forward propagating, also for f'(a) use old a? - yes
+delta is loss of unit in next layer
+
+delta_0 = w * delta_1 * f'(a)
+where values delta_0, w and f’(z) are those of the same unit’s, while delta_1 is the loss of the unit on the other side of the weighted link.
+if delta_1 = delta_D0 then delta_D0 = -4
+
+(batch gradient descent formula)
+W = W - alpha * J'(W)
+W = W - alpha * Z * delta
+W10 := W10 - alpha . Z_X0 . delta_Z1
+alpha = learning rate
+
+when talking about deltas, a delta is the loss of/at/by specific node
+
+
+conclusion
+first forward propagation
+second back propagation, calculating all local losses i.e. deltas
+third new weight calculations, can be forward
+one node: {value-temp, a-temp, z-temp, {weights}, {deltas-temp}}
+             ^X0/X1/X2
+
+convolutional neural network, check hyperparamaters, receptive field and loss layer?
+https://en.wikipedia.org/wiki/Convolutional_neural_network#Convolutional_layers
+for more detail to minimize inputs / feature map size
+https://towardsdatascience.com/understanding-2d-dilated-convolution-operation-with-examples-in-numpy-and-tensorflow-with-d376b3972b25
+
+
+
+-------------------------------------------------------------------------------
+
+http://neuralnetworksanddeeplearning.com/chap1.html
+
+--------------------
+https://www.youtube.com/watch?v=hfMk-kjRv4c
+^until 12:42
+car on track
+road border check via line-line-check
+https://www.jeffreythompson.org/collision-detection/line-line.php
+create editor to create road
+jframe, arraylist, 2darray?, vector2?
+
+network class, layer class, node class
+method calculateRawOutput
+^sum weights*input+bias
+^ use biases[stuff]
+method calculateSigmoidOutput
+^1/(1+e^-z)
+
+in java
+input distance of variable amount of rays, speed
+output increase speed, turn left, turn right
+
+
+manager
+batch iterations arrayCollumns/network
+print furthest distance
